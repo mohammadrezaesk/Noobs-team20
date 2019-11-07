@@ -2,13 +2,18 @@
 
 {% block head %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'Accounts/login.css' %}" type="text/css">
+<link rel="stylesheet" href="{% static 'Accounts/editprofile.css' %}" type="text/css">
 {% endblock %}
 {% block body %}
+<div id="verymain">
+    <h1>Edit Profile (:</h1>
+    <div id="main">
 <form id="setting_form" action="/accounts/editprofile/" method="POST">
     {% csrf_token %}
-    <input name="first_name" value="{{request.user.first_name}}">
-    <input name="last_name" value="{{request.user.last_name}}">
-    <button type="submit" class="btn btn-success">Submit</button>
+    <input name="first_name" value="{{request.user.first_name}}" class="form-control">
+    <input name="last_name" value="{{request.user.last_name}}" class="form-control">
+    <button type="submit" class="btn btn-success">Save</button>
 </form>
+    </div>
+</div>
 {% endblock %}

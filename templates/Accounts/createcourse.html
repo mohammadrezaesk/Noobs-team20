@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'Accounts/createcourse.css' %}" type="text/css">
+{% endblock %}
+{% block body %}
+<div id="btns">
+    <a id="make_new_course" href="/accounts/panel/createcourse"><button class="btn btn-success">+ Create New</button></a>
+    <a id="courses" href="/accounts/panel/courses"><button class="btn btn-success">Courses</button></a>
+</div>
+<div id="verymain">
+    <h1>Create New Course (:</h1>
+    <div id="main">
+<form id="make_course" action="/accounts/panel/createcourse/" method="POST">
+    {% csrf_token %}
+<input name="department" class="form-control" placeholder="Department">
+<input name="name" class="form-control" placeholder="Name">
+<input name="course_number" class="form-control" placeholder="Course Number">
+<input name="group_number" class="form-control" placeholder="Group number">
+<input name="teacher" class="form-control" placeholder="Teacher">
+<input name="start_time" class="form-control" placeholder="Start time">
+<input name="end_time" class="form-control" placeholder="End time">
+<select name="first_day" class="form-control" placeholder="First Day">
+    <option value="0">shanbe</option>
+    <option value="1">yeshanbe</option>
+    <option value="2">doshanbe</option>
+    <option value="3">seshanbe</option>
+    <option value="4">charshanbe</option>
+</select>
+<select name="second_day" class="form-control">
+    <option value="0">shanbe</option>
+    <option value="1">yeshanbe</option>
+    <option value="2">doshanbe</option>
+    <option value="3">seshanbe</option>
+    <option value="4">charshanbe</option>
+</select>
+    <button type="submit" class="btn btn-success">Create Course</button>
+</form>
+    </div>
+</div>
+{% endblock %}

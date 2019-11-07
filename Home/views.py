@@ -21,8 +21,8 @@ def Contact(request):
             args = {'done': done}
             contact = ContactUs(title=title, email=email, text=text)
             contact.save()
-            TextWithEmail = text +' '+ email
-            send_mail(title,TextWithEmail,"asdsd@gmail.com",['webe19lopers@gmail.com'])
+            TextWithEmail = text + '\n' + email
+            send_mail(title,TextWithEmail,"asdsd@gmail.com",['mohammad.eskandari.3600@gmail.com'], fail_silently=False, )
             return redirect('/contact/success')
         else:
             return render(request,'Home/contact.html')

@@ -1,5 +1,11 @@
-input , .btn , #errors{
+input , .btn {
     margin: 5px !important;
+}
+span{
+    background-color: #28a745;
+    color: white;
+    padding:5px;
+    border-radius: 10px;
 }
 #verymain{
     position: absolute;

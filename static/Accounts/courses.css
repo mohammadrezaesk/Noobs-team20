@@ -1,13 +1,13 @@
-input , .btn , #errors{
-    margin: 5px !important;
-}
 #verymain{
     position: absolute;
     top: 50%;
-    width: 50%;
+    width: 80%;
 
     left: 50%;
     transform: translate(-50%,-50%);
+}
+#btns{
+    float: right;
 }
 #main{
     background-color: #f8f9fa;

@@ -1,4 +1,4 @@
-input , .btn , #errors{
+input , .btn , select{
     margin: 5px !important;
 }
 #verymain{
@@ -15,6 +15,9 @@ input , .btn , #errors{
 
     border-bottom-right-radius: 15px;
     border-bottom-left-radius: 15px;
+}
+#btns{
+    float: right;
 }
 h1 {
     text-align: center !important;

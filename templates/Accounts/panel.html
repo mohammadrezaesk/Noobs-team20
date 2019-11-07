@@ -2,8 +2,11 @@
 
 {% block head %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'Accounts/login.css' %}" type="text/css">
+<link rel="stylesheet" href="{% static 'Accounts/panel.css' %}" type="text/css">
 {% endblock %}
 {% block body %}
-
+<div id="btns">
+    <a id="make_new_course" href="/accounts/panel/createcourse"><button class="btn btn-success">+ Create New</button></a>
+    <a id="courses" href="/accounts/panel/courses"><button class="btn btn-success">Courses</button></a>
+</div>
 {% endblock %}

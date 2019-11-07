@@ -1,10 +1,16 @@
 {% extends 'base.html' %}
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'Accounts/register.css' %}">
+
 {% block head %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'Accounts/profile.css' %}">
 {% endblock %}
 {% block body %}
-<span id="text_first_name">{{user.first_name}}</span>
-<span id="text_last_name">{{user.last_name}}</span>
-<span id="text_user_name">{{user.username}}</span>
+<div id="verymain">
+    <h1>Profile (:</h1>
+    <div id="main">
+<h3>First name : <span id="text_first_name">{{user.first_name}}</span></h3><br>
+<h3>Last name : <span id="text_last_name">{{user.last_name}}</span></h3><br>
+<h3>Username : <span id="text_user_name">{{user.username}}</span></h3><br>
+    </div>
+</div>
 {% endblock %}

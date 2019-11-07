@@ -1,0 +1,15 @@
+.container{
+    padding-top: 30px !important;
+}
+body{
+    background-color: #dcdcdc !important;
+}
+.bg-light2{
+    background-color: #28a745 !important;
+}
+.navbar-brand , .nav-link{
+    color: white !important;
+}
+.navbar-brand{
+    font-weight: 700;
+}

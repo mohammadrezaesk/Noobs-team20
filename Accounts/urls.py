@@ -23,5 +23,7 @@ urlpatterns = [
     path('profile/', views.Profile, name="profile"),
     path('editprofile/', views.EditProfile, name="editprofile"),
     path('panel/', views.Panel, name="panel"),
+    path('panel/createcourse/',views.createcourse , name="createcourse"),
+    path('panel/courses/',views.courses , name="courses"),
 
 ]

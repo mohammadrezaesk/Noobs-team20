@@ -3,15 +3,15 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login as lgn
 from django.contrib.auth import logout as lgt
 from django.contrib.auth.decorators import login_required
-
+from Home.models import Course
 
 # Create your views here.
 def Register(request):
     error = 0
     users = User.objects.all()
-    args = {'error':0}
+    args = {'error': 0}
     if request.method == "GET" and request.user.is_authenticated == False:
-        return render(request, 'Accounts/register.html',args)
+        return render(request, 'Accounts/register.html', args)
     elif request.method == 'GET' and request.user.is_authenticated == True:
         return redirect('/')
     elif request.method == "POST":
@@ -21,32 +21,32 @@ def Register(request):
         email = request.POST['email']
         password1 = request.POST['password1']
         password2 = request.POST['password2']
-        for user in users :
+        for user in users:
             if user.username == username:
-                error +=2
-        if password2 != password1 :
+                error += 2
+        if password2 != password1:
             error += 1
         if error == 1:
             msg = "گذرواژه و تکرار گذرواژه یکسان نیستند"
-            args = {'msg': msg,'error':1}
+            args = {'msg': msg, 'error': 1}
             return render(request, 'Accounts/register.html', args)
         elif error == 2:
             msg = "نام کاربری شما در سیستم موجود است"
-            args = {'msg': msg,'error':1}
+            args = {'msg': msg, 'error': 1}
             return render(request, 'Accounts/register.html', args)
         elif error == 3:
             msg = "نام کاربری شما در سیستم موجود است گذرواژه و تکرار گذرواژه یکسان نیستند"
-            args = {'msg':msg,'error':1}
-            return render(request,'Accounts/register.html',args)
-        user = User(first_name=firstname,last_name=lastname,username=username,email=email,password=password1)
+            args = {'msg': msg, 'error': 1}
+            return render(request, 'Accounts/register.html', args)
+        user = User(first_name=firstname, last_name=lastname, username=username, email=email, password=password1)
         user.save()
-        lgn(request,user)
+        lgn(request, user)
 
         return redirect('/')
 
 
 def Login(request):
-    arg = {'error': 0 }
+    arg = {'error': 0}
     if request.method == 'GET' and request.user.is_authenticated == False:
         return render(request, 'Accounts/login.html', arg)
     elif request.method == 'GET' and request.user.is_authenticated:
@@ -59,8 +59,10 @@ def Login(request):
             if i.password == password and i.username == username:
                 lgn(request, i)
                 return redirect('/')
-        arg = {'error': 1 }
+        arg = {'error': 1}
         return render(request, 'Accounts/login.html', arg)
+
+
 @login_required
 def Logout(request):
     lgt(request)
@@ -84,6 +86,29 @@ def EditProfile(request):
         request.user.save()
         return redirect('/accounts/profile')
 
+
 @login_required
 def Panel(request):
-    return render(request,'Accounts/panel.html')
+    return render(request, 'Accounts/panel.html')
+
+
+def createcourse(request):
+    if request.method != "POST":
+        return render(request,'Accounts/createcourse.html')
+    else :
+        department = request.POST['department']
+        name = request.POST['name']
+        teacher = request.POST['teacher']
+        groupnumber = request.POST['group_number']
+        coursenumber = request.POST['course_number']
+        starttime = request.POST['start_time']
+        endtime = request.POST['end_time']
+        firstday = request.POST['first_day']
+        secondday = request.POST['second_day']
+        course = Course(department=department,name=name,teacher=teacher,group_number=groupnumber,course_number=coursenumber,start_time=starttime,end_time=endtime,first_day=firstday,second_day=secondday)
+        course.save()
+        return redirect('/accounts/panel')
+def courses(request):
+    coursess = Course.objects.all()
+    args = {'courses':coursess}
+    return render(request,'Accounts/Courses.html',args)

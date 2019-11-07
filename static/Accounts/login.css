@@ -1,5 +1,5 @@
-input , .btn , #errors{
-    margin: 5px !important;
+input , button , #error{
+    margin: 5px;
 }
 #verymain{
     position: absolute;

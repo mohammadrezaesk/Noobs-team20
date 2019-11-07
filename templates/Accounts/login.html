@@ -5,14 +5,20 @@
 <link rel="stylesheet" href="{% static 'Accounts/login.css' %}" type="text/css">
 {% endblock %}
 {% block body %}
-<h1>Login</h1><br><br>
+<div id="verymain">
+
+<h1>Login From Here (:</h1>
+<div id="main">
 <form method="post" id="login_form" action="/accounts/login/">
     {% csrf_token %}
     <input type="text" name="username" placeholder="username" class="form-control">
     <input type="password" name="password" placeholder="password" class="form-control">
-    <button type="submit" class="btn btn-warning">Login</button>
-</form>
     {% if error %}
-    <div id="error">Error!</div>
+    <div id="error" class="alert alert-danger">Username Or Password is not correct!</div>
     {% endif %}
+    <button type="submit" class="btn btn-success">Login</button>
+</form>
+
+</div>
+</div>
 {% endblock %}
