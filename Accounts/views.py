@@ -7,6 +7,8 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def Register(request):
+    error = 0
+    users = User.objects.all()
     if request.method == "GET":
         return render(request, 'Accounts/register.html')
     elif request.method == "POST":
@@ -16,7 +18,14 @@ def Register(request):
         email = request.POST['email']
         password1 = request.POST['password1']
         password2 = request.POST['password2']
-        
+        for user in users :
+            if user.username == username:
+                error +=2
+        if password2 != password1 :
+            error += 1
+        if error > 0:
+            args = {'error':error}
+            return render(request,'Accounts/register.html',args)
         user = User(first_name=firstname,last_name=lastname,username=username,email=email,password=password1)
         user.save()
         lgn(request,user)

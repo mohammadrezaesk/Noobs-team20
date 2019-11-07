@@ -21,9 +21,9 @@ def Contact(request):
             args = {'done': done}
             contact = ContactUs(title=title, email=email, text=text)
             contact.save()
-            return render(request,'Home/contact.html')
+            return redirect('/contact/success')
         else:
-            return redirect('/contact')
+            return render(request,'Home/contact.html')
 
 
 
