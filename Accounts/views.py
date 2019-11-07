@@ -1,8 +1,8 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib.auth import login as lgn
 from django.contrib.auth import logout as lgt
 from django.contrib.auth.decorators import login_required
-from .models import User
 
 
 # Create your views here.
