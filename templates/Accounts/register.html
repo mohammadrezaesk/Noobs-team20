@@ -4,7 +4,7 @@
 {% block head %}
 {% endblock %}
 {% block body %}
-    <form id="register_form" method="POST" action="/accounts/register">
+    <form id="register_form" method="POST" action="/accounts/register/">
     {% csrf_token %}
         <input name='first_name' type="text" class="form-control" placeholder="fn" required>
         <input name='last_name' type="text" class="form-control" placeholder="ln" required>
