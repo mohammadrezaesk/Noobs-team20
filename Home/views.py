@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render , redirect
 from .models import ContactUs
 
 
@@ -21,6 +21,11 @@ def Contact(request):
             args = {'done': done}
             contact = ContactUs(title=title, email=email, text=text)
             contact.save()
-            return render(request, 'Home/contactsuccess.html')
+            return redirect('/contact/success')
         else:
             return render(request, 'Home/contact.html', args)
+
+
+
+def contactsuccess(request):
+    return render(request, 'Home/contactsuccess.html')
