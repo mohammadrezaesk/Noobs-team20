@@ -9,8 +9,9 @@ from django.contrib.auth.decorators import login_required
 def Register(request):
     error = 0
     users = User.objects.all()
+    args = {'error':0}
     if request.method == "GET":
-        return render(request, 'Accounts/register.html')
+        return render(request, 'Accounts/register.html',args)
     elif request.method == "POST":
         firstname = request.POST['first_name']
         lastname = request.POST['last_name']
@@ -23,8 +24,17 @@ def Register(request):
                 error +=2
         if password2 != password1 :
             error += 1
-        if error > 0:
-            args = {'error':error}
+        if error == 1:
+            msg = "گذرواژه و تکرار گذرواژه یکسان نیستند"
+            args = {'msg': msg,'error':1}
+            return render(request, 'Accounts/register.html', args)
+        elif error == 2:
+            msg = "نام کاربری شما در سیستم موجود است"
+            args = {'msg': msg,'error':1}
+            return render(request, 'Accounts/register.html', args)
+        elif error == 3:
+            msg = "نام کاربری شما در سیستم موجود است گذرواژه و تکرار گذرواژه یکسان نیستند"
+            args = {'msg':msg,'error':1}
             return render(request,'Accounts/register.html',args)
         user = User(first_name=firstname,last_name=lastname,username=username,email=email,password=password1)
         user.save()

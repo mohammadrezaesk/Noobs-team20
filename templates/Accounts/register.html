@@ -14,4 +14,7 @@
         <input name='password2' type="password" class="form-control" required>
         <button name='submit' class="btn btn-success">Submit</button>
     </form>
+{% if error == 1 %}
+<div id='error'>{{msg}}</div>
+{% endif %}
 {% endblock %}
