@@ -21,6 +21,6 @@ def Contact(request):
             args = {'done': done}
             contact = ContactUs(title=title, email=email, text=text)
             contact.save()
-            return render(request, 'Home/contact.html', args)
+            return render(request, 'Home/contactsuccess.html')
         else:
             return render(request, 'Home/contact.html', args)
