@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'Accounts/login.css' %}" type="text/css">
+{% endblock %}
+{% block body %}
+<h1>Login</h1><br><br>
+<form method="post">
+    {% csrf_token %}
+    <input type="text" name="username" placeholder="username" class="form-control">
+    <input type="password" name="password" placeholder="password" class="form-control">
+    <button type="submit" class="btn btn-warning">Login</button>
+</form>
+{% endblock %}
