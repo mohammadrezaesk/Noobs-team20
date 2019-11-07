@@ -10,7 +10,7 @@ def Register(request):
     error = 0
     users = User.objects.all()
     args = {'error':0}
-    if request.method == "GET":
+    if request.method == "GET" and request.user.is_authenticated == False:
         return render(request, 'Accounts/register.html',args)
     elif request.method == 'GET' and request.user.is_authenticated == True:
         return redirect('/')
@@ -70,3 +70,16 @@ def Logout(request):
 @login_required
 def Profile(request):
     return render(request, 'accounts/profile.html')
+
+
+@login_required
+def EditProfile(request):
+    if request.method == "GET":
+        return render(request, 'Accounts/editprofile.html')
+    else:
+        fname = request.POST['first_name']
+        lname = request.POST['last_name']
+        request.user.first_name = fname
+        request.user.last_name = lname
+        request.user.save()
+        return redirect('/accounts/profile')

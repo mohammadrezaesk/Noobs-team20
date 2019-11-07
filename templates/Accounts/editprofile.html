@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'Accounts/login.css' %}" type="text/css">
+{% endblock %}
+{% block body %}
+<form id="setting_form" action="/accounts/editprofile/" method="POST">
+    {% csrf_token %}
+    <input name="first_name" value="{{request.user.first_name}}">
+    <input name="last_name" value="{{request.user.last_name}}">
+    <button type="submit" class="btn btn-success">Submit</button>
+</form>
+{% endblock %}
