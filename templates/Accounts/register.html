@@ -4,14 +4,14 @@
 {% block head %}
 {% endblock %}
 {% block body %}
-    <form id="register_form" method="POST">
+    <form id="register_form" method="POST" action="/accounts/register">
     {% csrf_token %}
-        <input name='first_name' type="text" class="form-control" placeholder="fn">
-        <input name='last_name' type="text" class="form-control" placeholder="ln">
-        <input name='username' type="text" class="form-control" placeholder="un">
-        <input name='email' type="email" class="form-control" placeholder="em">
-        <input name='password1' type="password" class="form-control">
-        <input name='password2' type="password" class="form-control">
+        <input name='first_name' type="text" class="form-control" placeholder="fn" required>
+        <input name='last_name' type="text" class="form-control" placeholder="ln" required>
+        <input name='username' type="text" class="form-control" placeholder="un" required>
+        <input name='email' type="email" class="form-control" placeholder="em" required>
+        <input name='password1' type="password" class="form-control" required>
+        <input name='password2' type="password" class="form-control" required>
         <button name='submit' class="btn btn-success">Submit</button>
     </form>
 {% endblock %}

@@ -18,12 +18,15 @@ def Register(request):
         password2 = request.POST['password2']
         user = User(first_name=firstname,last_name=lastname,username=username,email=email,password=password1)
         user.save()
-        return render(request, 'Accounts/register.html')
+        lgn(request,user)
+
+        return redirect('/')
 
 
 def Login(request):
+    arg = {'error': 0 }
     if request.method == 'GET' and request.user.is_authenticated == False:
-        return render(request, 'Accounts/login.html')
+        return render(request, 'Accounts/login.html', arg)
     elif request.method == 'GET' and request.user.is_authenticated:
         return redirect('/')
     elif request.method == 'POST':
@@ -31,6 +34,12 @@ def Login(request):
         password = request.POST['password']
         entered_user = User.objects.all()
         for i in entered_user:
-            if i.password == password:
+            if i.password == password and i.username == username:
                 lgn(request, i)
-                return redirect('/accounts/home')
+                return redirect('/')
+        arg = {'error': 1 }
+        return render(request, 'Accounts/login.html', arg)
+@login_required
+def Logout(request):
+    lgt(request)
+    return redirect('/accounts/login')
