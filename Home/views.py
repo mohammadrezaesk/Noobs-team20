@@ -1,6 +1,6 @@
 from django.shortcuts import render , redirect
 from .models import ContactUs
-
+from django.core.mail import send_mail
 
 # Create your views here.
 def HomePage(request):
@@ -21,6 +21,8 @@ def Contact(request):
             args = {'done': done}
             contact = ContactUs(title=title, email=email, text=text)
             contact.save()
+            TextWithEmail = text +' '+ email
+            send_mail(title,TextWithEmail,"asdsd@gmail.com",['webe19lopers@gmail.com'])
             return redirect('/contact/success')
         else:
             return render(request,'Home/contact.html')
