@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'Accounts/register.css' %}">
+{% block head %}
+{% endblock %}
+{% block body %}
+    <form id="register_form" method="POST">
+    {% csrf_token %}
+        <input name='first_name' type="text" class="form-control">
+        <input name='last_name' type="text" class="form-control">
+        <input name='username' type="text" class="form-control">
+        <input name='email' type="email" class="form-control">
+        <input name='password1' type="password" class="form-control">
+        <input name='password2' type="password" class="form-control">
+        <button name='submit' class="btn btn-success">Submit</button>
+    </form>
+{% endblock %}
