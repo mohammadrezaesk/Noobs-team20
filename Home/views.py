@@ -23,7 +23,7 @@ def Contact(request):
             contact.save()
             return redirect('/contact/success')
         else:
-            return render(request, 'Home/contact.html', args)
+            return redirect('/contact')
 
 
 

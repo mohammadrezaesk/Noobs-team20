@@ -42,4 +42,4 @@ def Login(request):
 @login_required
 def Logout(request):
     lgt(request)
-    return redirect('/accounts/login')
+    return redirect('/')
