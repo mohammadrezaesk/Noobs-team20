@@ -16,8 +16,7 @@ def Register(request):
         email = request.POST['email']
         password1 = request.POST['password1']
         password2 = request.POST['password2']
-        if password1 == password2:
-            return
+        
         user = User(first_name=firstname,last_name=lastname,username=username,email=email,password=password1)
         user.save()
         lgn(request,user)
