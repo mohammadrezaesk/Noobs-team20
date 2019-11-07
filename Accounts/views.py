@@ -83,3 +83,7 @@ def EditProfile(request):
         request.user.last_name = lname
         request.user.save()
         return redirect('/accounts/profile')
+
+@login_required
+def Panel(request):
+    return render(request,'Accounts/panel.html')
