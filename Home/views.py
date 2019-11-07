@@ -15,7 +15,9 @@ def Contact(request):
         text = request.POST['text']
         if len(text)>=10 and len(text)<=250:
             done = 1
-        args={'done':done}
-        contact = ContactUs(title=title,email=email,text=text)
-        contact.save()
-        return render(request,'Home/contact.html',args)
+            args = {'done': done}
+            contact = ContactUs(title=title, email=email, text=text)
+            contact.save()
+            return render(request, 'Home/contact.html', args)
+        else:
+            return render(request, 'Home/contact.html', args)
