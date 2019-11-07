@@ -12,6 +12,8 @@ def Register(request):
     args = {'error':0}
     if request.method == "GET":
         return render(request, 'Accounts/register.html',args)
+    elif request.method == 'GET' and request.user.is_authenticated == True:
+        return redirect('/')
     elif request.method == "POST":
         firstname = request.POST['first_name']
         lastname = request.POST['last_name']
@@ -63,3 +65,8 @@ def Login(request):
 def Logout(request):
     lgt(request)
     return redirect('/')
+
+
+@login_required
+def Profile(request):
+    return render(request, 'accounts/profile.html')

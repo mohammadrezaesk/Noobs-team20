@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'Accounts/register.css' %}">
+{% block head %}
+{% endblock %}
+{% block body %}
+<span id="text_first_name">{{user.first_name}}</span>
+<span id="text_last_name">{{user.last_name}}</span>
+<span id="text_user_name">{{user.username}}</span>
+{% endblock %}
