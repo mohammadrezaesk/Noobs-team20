@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="{% static 'Accounts/courses.css' %}" type="text/css">
 {% endblock %}
 {% block body %}
+<div style="margin-bottom: 30px;">
 <div id="btns">
     {% if request.user.is_superuser %}
     <a id="make_new_course" href="/accounts/panel/createcourse"><button class="btn btn-success">+ Create New</button></a>
@@ -12,12 +13,17 @@
     <a id="courses" href="/accounts/panel/courses">
         <button class="btn btn-success">Courses</button>
     </a>
+</div>
     <form class="form-inline my-2 my-lg-0" id="search_form" action="/accounts/panel/courses/" method="POST">
     {% csrf_token %}
     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search_query" name="search_query">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="submit">Search</button>
+        <label> Department </label><input type="checkbox" name="department">
+        <label>  Teacher </label><input type="checkbox" name="teacher">
+        <label> Name </label><input type="checkbox" name="course">
+    <button class="btn btn-success my-2 my-sm-0" type="submit" name="submit">Search</button>
     </form>
 </div>
+<div id="veryvery">
 <div class="verymain">
     <h1>Search Results (:</h1>
     <div class="main">
@@ -63,5 +69,6 @@
             {% endfor %}
         </div>
     </div>
+</div>
 </div>
 {% endblock %}>

@@ -123,8 +123,11 @@ def courses(request):
     args = {'courses': coursess}
     if request.method == "POST":
         querysearch = request.POST['search_query']
-        searchResults = Course.objects.filter(department=querysearch)
-        args = {'courses': coursess , 'searchResults':searchResults}
+        teacher = Course.objects.filter(teacher=querysearch)
+        department = Course.objects.filter(department=querysearch)
+        name = Course.objects.filter(name=querysearch)
+        filteredCourses = set(list(teacher)+list(department)+list(name))
+        args = {'courses': coursess , 'searchResults':filteredCourses}
         return render(request,'Accounts/Courses.html',args)
     return render(request, 'Accounts/Courses.html', args)
 
