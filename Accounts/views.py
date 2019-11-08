@@ -123,10 +123,19 @@ def courses(request):
     args = {'courses': coursess}
     if request.method == "POST":
         querysearch = request.POST['search_query']
-        teacher = Course.objects.filter(teacher=querysearch)
-        department = Course.objects.filter(department=querysearch)
-        name = Course.objects.filter(name=querysearch)
-        filteredCourses = set(list(teacher)+list(department)+list(name))
+        teacher = Course.objects.filter(teacher__contains=querysearch)
+        department = Course.objects.filter(department__contains=querysearch)
+        course = Course.objects.filter(name__contains=querysearch)
+        filteredCourses = []
+        if request.POST.get('teacher'):
+            filteredCourses += list(teacher)
+        if request.POST.get('department'):
+            filteredCourses += list(department)
+        if request.POST.get('course'):
+            filteredCourses += list(course)
+        if not request.POST.get('course') and not request.POST.get('department') and not request.POST.get('teacher'):
+            filteredCourses += list(department)
+        filteredCourses = set(filteredCourses)
         args = {'courses': coursess , 'searchResults':filteredCourses}
         return render(request,'Accounts/Courses.html',args)
     return render(request, 'Accounts/Courses.html', args)

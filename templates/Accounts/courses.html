@@ -17,9 +17,9 @@
     <form class="form-inline my-2 my-lg-0" id="search_form" action="/accounts/panel/courses/" method="POST">
     {% csrf_token %}
     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search_query" name="search_query">
-        <label> Department </label><input type="checkbox" name="department">
-        <label>  Teacher </label><input type="checkbox" name="teacher">
-        <label> Name </label><input type="checkbox" name="course">
+        <label> Department </label><input type="checkbox" name="department" >
+        <label>  Teacher </label><input type="checkbox" name="teacher" >
+        <label> Course </label><input type="checkbox" name="course" >
     <button class="btn btn-success my-2 my-sm-0" type="submit" name="submit">Search</button>
     </form>
 </div>
