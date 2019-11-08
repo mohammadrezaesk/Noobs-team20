@@ -22,7 +22,7 @@ def Contact(request):
             contact = ContactUs(title=title, email=email, text=text)
             contact.save()
             TextWithEmail = text + '\n' + email
-            send_mail(title,TextWithEmail,"asdsd@gmail.com",['mohammad.eskandari.3600@gmail.com'], fail_silently=False, )
+            send_mail(title,TextWithEmail,"asdsd@gmail.com",['webe19lopers@gmail.com'], fail_silently=False, )
             return redirect('/contact/success')
         else:
             return render(request,'Home/contact.html')
