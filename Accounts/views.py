@@ -80,12 +80,15 @@ def Profile(request):
 
 @login_required
 def EditProfile(request):
-    profile = Profile.objects.filter(user=request.user)
+    profile = request.user.profile
     if request.method == "GET":
         return render(request, 'Accounts/editprofile.html', {'profile': profile})
     else:
         fname = request.POST['first_name']
         lname = request.POST['last_name']
+        avatar = request.FILES['myfile']
+        profile.avatar = avatar
+        profile.save()
         if fname != "":
             request.user.first_name = fname
         if lname != "":
