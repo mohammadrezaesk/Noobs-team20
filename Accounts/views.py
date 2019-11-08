@@ -4,6 +4,7 @@ from django.contrib.auth import login as lgn, authenticate
 from django.contrib.auth import logout as lgt
 from django.contrib.auth.decorators import login_required
 from Home.models import Course
+from Accounts.models import Profile as prf
 
 
 # Create your views here.
@@ -72,13 +73,15 @@ def Logout(request):
 
 @login_required
 def Profile(request):
-    return render(request, 'accounts/profile.html')
+    profile = prf.objects.filter(user=request.user)
+    return render(request, 'accounts/profile.html',{'profile':profile})
 
 
 @login_required
 def EditProfile(request):
+    profile = Profile.objects.filter(user=request.user)
     if request.method == "GET":
-        return render(request, 'Accounts/editprofile.html')
+        return render(request, 'Accounts/editprofile.html',{'profile':profile})
     else:
         fname = request.POST['first_name']
         lname = request.POST['last_name']
@@ -87,7 +90,7 @@ def EditProfile(request):
         if lname != "":
             request.user.last_name = lname
         request.user.save()
-        return redirect('/accounts/profile')
+        return redirect('/accounts/profile',{'profile':profile})
 
 
 @login_required
