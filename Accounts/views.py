@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from django.contrib.auth import login as lgn
+from django.contrib.auth import login as lgn, authenticate
 from django.contrib.auth import logout as lgt
 from django.contrib.auth.decorators import login_required
 from Home.models import Course
@@ -38,7 +38,8 @@ def Register(request):
             msg = "نام کاربری شما در سیستم موجود است گذرواژه و تکرار گذرواژه یکسان نیستند"
             args = {'msg': msg, 'error': 1}
             return render(request, 'Accounts/register.html', args)
-        user = User(first_name=firstname, last_name=lastname, username=username, email=email, password=password1)
+        user = User(first_name=firstname, last_name=lastname, username=username, email=email)
+        user.set_password(password1)
         user.save()
         lgn(request, user)
 
@@ -54,11 +55,10 @@ def Login(request):
     elif request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-        entered_user = User.objects.all()
-        for i in entered_user:
-            if i.password == password and i.username == username:
-                lgn(request, i)
-                return redirect('/')
+        i = authenticate(request, username=username, password=password)
+        if i:
+            lgn(request, i)
+            return redirect('/')
         arg = {'error': 1}
         return render(request, 'Accounts/login.html', arg)
 
@@ -81,8 +81,10 @@ def EditProfile(request):
     else:
         fname = request.POST['first_name']
         lname = request.POST['last_name']
-        request.user.first_name = fname
-        request.user.last_name = lname
+        if fname != "":
+            request.user.first_name = fname
+        if lname != "":
+            request.user.last_name = lname
         request.user.save()
         return redirect('/accounts/profile')
 
