@@ -129,6 +129,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 # Optional SMTP authentication information for EMAIL_HOST.
 EMAIL_HOST_USER = 'mohammad.1392.sk@gmail.com'
+DEFAULT_FROM_EMAIL = 'raihncse@gmail.com'
 EMAIL_HOST_PASSWORD = 'salam bar shoma123' # Mail Password
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
