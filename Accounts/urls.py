@@ -25,6 +25,6 @@ urlpatterns = [
     path('panel/', views.Panel, name="panel"),
     path('panel/createcourse/',views.createcourse , name="createcourse"),
     path('panel/courses/',views.courses , name="courses"),
-
+    path('panel/courses/add/<int:pk>/', views.add, name="add"),
 
 ]

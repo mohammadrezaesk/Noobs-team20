@@ -4,6 +4,7 @@ from django.contrib.auth import login as lgn, authenticate
 from django.contrib.auth import logout as lgt
 from django.contrib.auth.decorators import login_required
 from Home.models import Course
+from Accounts.models import x
 from Accounts.models import Profile as ProfileModel
 
 
@@ -124,10 +125,12 @@ def createcourse(request):
         course.save()
         return redirect('/accounts/panel')
 
-
+def add(request,pk):
+    pass
 def courses(request):
     coursess = Course.objects.all()
-    args = {'courses': coursess}
+    mycourses = x.objects.filter(user=request.user)
+    args = {'courses': coursess,'mycourses':mycourses}
     if request.method == "POST":
         querysearch = request.POST['search_query']
         teacher = Course.objects.filter(teacher=querysearch)
@@ -143,6 +146,6 @@ def courses(request):
         if not request.POST.get('course') and not request.POST.get('department') and not request.POST.get('teacher'):
             filteredCourses += list(department)
         filteredCourses = set(filteredCourses)
-        args = {'courses': coursess, 'searchResults': filteredCourses}
+        args = {'courses': coursess, 'searchResults': filteredCourses,'mycourses':mycourses}
         return render(request, 'Accounts/Courses.html', args)
     return render(request, 'Accounts/Courses.html', args)
