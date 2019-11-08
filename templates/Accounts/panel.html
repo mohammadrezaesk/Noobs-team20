@@ -6,7 +6,8 @@
 {% endblock %}
 {% block body %}
 <div id="btns">
-    <a id="make_new_course" href="/accounts/panel/createcourse" class="btn btn-success">+ Create New</a>
-    <a id="courses" href="/accounts/panel/courses" class="btn btn-success">Courses</a>
+{% if request.user.is_superuser %}
+    <a id="make_new_course" href="/accounts/panel/createcourse"><button class="btn btn-success">+ Create New</button></a>
+    {% endif %}    <a id="courses" href="/accounts/panel/courses" class="btn btn-success">Courses</a>
 </div>
 {% endblock %}
