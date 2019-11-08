@@ -5,6 +5,7 @@ from django.contrib.auth import logout as lgt
 from django.contrib.auth.decorators import login_required
 from Home.models import Course
 
+
 # Create your views here.
 def Register(request):
     error = 0
@@ -93,13 +94,14 @@ def EditProfile(request):
 def Panel(request):
     return render(request, 'Accounts/panel.html')
 
+
 @login_required
 def createcourse(request):
     if not request.user.is_superuser:
         return redirect('/accounts/panel')
     if request.method != "POST":
-        return render(request,'Accounts/createcourse.html')
-    else :
+        return render(request, 'Accounts/createcourse.html')
+    else:
         department = request.POST['department']
         name = request.POST['name']
         teacher = request.POST['teacher']
@@ -109,10 +111,17 @@ def createcourse(request):
         endtime = request.POST['end_time']
         firstday = request.POST['first_day']
         secondday = request.POST['second_day']
-        course = Course(department=department,name=name,teacher=teacher,group_number=groupnumber,course_number=coursenumber,start_time=starttime,end_time=endtime,first_day=firstday,second_day=secondday)
+        course = Course(department=department, name=name, teacher=teacher, group_number=groupnumber,
+                        course_number=coursenumber, start_time=starttime, end_time=endtime, first_day=firstday,
+                        second_day=secondday)
         course.save()
         return redirect('/accounts/panel')
+
+
 def courses(request):
     coursess = Course.objects.all()
-    args = {'courses':coursess}
-    return render(request,'Accounts/Courses.html',args)
+    args = {'courses': coursess}
+
+    return render(request, 'Accounts/Courses.html', args)
+
+

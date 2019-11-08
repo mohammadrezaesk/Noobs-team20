@@ -26,4 +26,5 @@ urlpatterns = [
     path('panel/createcourse/',views.createcourse , name="createcourse"),
     path('panel/courses/',views.courses , name="courses"),
 
+
 ]
