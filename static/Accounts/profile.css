@@ -5,12 +5,7 @@ span{
     border-radius: 10px;
 }
 #verymain{
-    position: absolute;
-    top: 50%;
-    width: 50%;
 
-    left: 50%;
-    transform: translate(-50%,-50%);
 }
 #main{
     background-color: #f8f9fa;
