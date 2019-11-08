@@ -56,7 +56,8 @@
                 <div class="col-2"  style="font-weight: 800;">DEPARTMENT</div>
                 <div class="col-2" style="font-weight: 800;">COURSE DAYS</div>
                 <div class="col-3" style="font-weight: 800;">COURSE TIME</div>
-                <div class="col-3" style="font-weight: 800;">COURSE TEACHER</div>
+                <div class="col-2" style="font-weight: 800;">COURSE TEACHER</div>
+                <div class="col-1" style="font-weight: 800;">ADD</div>
             </div>
             {% for course in courses %}
             <div class="{{course.course_number}}_{{course.group_number}} row">
@@ -89,7 +90,6 @@
                 <div class="col-2">{{course.first_day}} and {{course.second_day}}</div>
                 <div class="col-3">{{course.start_time}} To {{course.end_time}}</div>
                 <div class="col-2">{{course.teacher}}</div>
-                <div class="col-1"><a class="add" href="/accounts/panel/courses/add">+</a></div>
             </div>
             {% endfor %}
         </div>

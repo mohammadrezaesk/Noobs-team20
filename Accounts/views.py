@@ -75,7 +75,6 @@ def Logout(request):
 @login_required
 def Profile(request):
     profile = request.user.profile
-    print(profile.avatar)
     return render(request, 'Accounts/profile.html', {'profile': profile.avatar})
 
 
@@ -126,7 +125,9 @@ def createcourse(request):
         return redirect('/accounts/panel')
 
 def add(request,pk):
-    pass
+    added = x(user=request.user,course=Course.objects.filter(pk=pk))
+    added.save()
+    return redirect('/accounts/panel/courses')
 def courses(request):
     coursess = Course.objects.all()
     mycourses = x.objects.filter(user=request.user)
