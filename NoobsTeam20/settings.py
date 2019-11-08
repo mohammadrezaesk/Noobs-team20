@@ -132,3 +132,4 @@ EMAIL_HOST_USER = 'mohammad.1392.sk@gmail.com'
 EMAIL_HOST_PASSWORD = 'salam bar shoma123' # Mail Password
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+LOGIN_URL = '/accounts/login/'

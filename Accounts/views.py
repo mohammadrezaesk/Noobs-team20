@@ -91,8 +91,10 @@ def EditProfile(request):
 def Panel(request):
     return render(request, 'Accounts/panel.html')
 
-
+@login_required
 def createcourse(request):
+    if not request.user.is_superuser:
+        return redirect('/accounts/panel')
     if request.method != "POST":
         return render(request,'Accounts/createcourse.html')
     else :
