@@ -7,26 +7,30 @@
 {% block body %}
 <div id="btns">
     {% if request.user.is_superuser %}
-    <a id="make_new_course" href="/accounts/panel/createcourse"><button class="btn btn-success">+ Create New</button></a>
+    <a id="make_new_course" href="/accounts/panel/createcourse">
+        <button class="btn btn-success">+ Create New</button>
+    </a>
     {% endif %}
-    <a id="courses" href="/accounts/panel/courses"><button class="btn btn-success">Courses</button></a>
+    <a id="courses" href="/accounts/panel/courses">
+        <button class="btn btn-success">Courses</button>
+    </a>
 </div>
 <div id="verymain">
     <h1>All Courses (:</h1>
     <div id="main">
         <div id="all_courses" style="text-align: center;">
             <div class="row">
-                <div class = col-3 style="font-weight: 800;">COURSE NAME</div>
-                <div class = col-3 style="font-weight: 800;">COURSE DAYS</div>
-                <div class = col-3 style="font-weight: 800;">COURSE TIME</div>
-                <div class = col-3 style="font-weight: 800;">COURSE TEACHER</div>
+                <div class=col-3 style="font-weight: 800;">COURSE NAME</div>
+                <div class=col-3 style="font-weight: 800;">COURSE DAYS</div>
+                <div class=col-3 style="font-weight: 800;">COURSE TIME</div>
+                <div class=col-3 style="font-weight: 800;">COURSE TEACHER</div>
             </div>
             {% for course in courses %}
             <div class="row {{course.course_number}}_{{course.group_number}}">
-                <div class = col-3>{{course.name}}</div>
-                <div class = col-3>{{course.first_day}} and {{course.second_day}}</div>
-                <div class = col-3>{{course.start_time}} To {{course.end_time}}</div>
-                <div class = col-3>{{course.teacher}}</div>
+                <div class=col-3><h4>{{course.name}}</h4></div>
+                <div class=col-3>{{course.first_day}} and {{course.second_day}}</div>
+                <div class=col-3>{{course.start_time}} To {{course.end_time}}</div>
+                <div class=col-3>{{course.teacher}}</div>
             </div>
             {% endfor %}
         </div>
