@@ -1,4 +1,4 @@
-#verymain{
+.verymain{
     position: absolute;
     top: 50%;
     width: 80%;
@@ -9,7 +9,7 @@
 #btns{
     float: right;
 }
-#main{
+.main{
     background-color: #f8f9fa;
     padding: 30px;
 

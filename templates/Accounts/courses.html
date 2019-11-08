@@ -12,10 +12,38 @@
     <a id="courses" href="/accounts/panel/courses">
         <button class="btn btn-success">Courses</button>
     </a>
+    <form class="form-inline my-2 my-lg-0" id="search_form" action="/accounts/panel/courses/" method="POST">
+    {% csrf_token %}
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search_query" name="search_query">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="submit">Search</button>
+    </form>
 </div>
-<div id="verymain">
+<div class="verymain">
+    <h1>Search Results (:</h1>
+    <div class="main">
+        <div id="search_result" style="text-align: center;">
+            <div class="row">
+                <div class=col-2 style="font-weight: 800;">COURSE NAME</div>
+                <div class="col-2"  style="font-weight: 800;">DEPARTMENT</div>
+                <div class=col-2 style="font-weight: 800;">COURSE DAYS</div>
+                <div class=col-3 style="font-weight: 800;">COURSE TIME</div>
+                <div class=col-3 style="font-weight: 800;">COURSE TEACHER</div>
+            </div>
+            {% for course in searchResults %}
+            <div class="{{course.course_number}}_{{course.group_number}} row">
+                <div class=col-2><h4>{{course.name}}</h4></div>
+                <div class="col-2" >{{course.department}}</div>
+                <div class=col-2>{{course.first_day}} and {{course.second_day}}</div>
+                <div class=col-3>{{course.start_time}} To {{course.end_time}}</div>
+                <div class=col-3>{{course.teacher}}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div class="verymain">
     <h1>All Courses (:</h1>
-    <div id="main">
+    <div class="main">
         <div id="all_courses" style="text-align: center;">
             <div class="row">
                 <div class=col-2 style="font-weight: 800;">COURSE NAME</div>

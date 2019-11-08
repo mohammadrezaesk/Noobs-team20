@@ -121,7 +121,11 @@ def createcourse(request):
 def courses(request):
     coursess = Course.objects.all()
     args = {'courses': coursess}
-
+    if request.method == "POST":
+        querysearch = request.POST['search_query']
+        searchResults = Course.objects.filter(department=querysearch)
+        args = {'courses': coursess , 'searchResults':searchResults}
+        return render(request,'Accounts/Courses.html',args)
     return render(request, 'Accounts/Courses.html', args)
 
 
