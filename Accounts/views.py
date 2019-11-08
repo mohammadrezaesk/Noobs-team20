@@ -123,9 +123,9 @@ def courses(request):
     args = {'courses': coursess}
     if request.method == "POST":
         querysearch = request.POST['search_query']
-        teacher = Course.objects.filter(teacher__contains=querysearch)
-        department = Course.objects.filter(department__contains=querysearch)
-        course = Course.objects.filter(name__contains=querysearch)
+        teacher = Course.objects.filter(teacher=querysearch)
+        department = Course.objects.filter(department=querysearch)
+        course = Course.objects.filter(name=querysearch)
         filteredCourses = []
         if request.POST.get('teacher'):
             filteredCourses += list(teacher)
