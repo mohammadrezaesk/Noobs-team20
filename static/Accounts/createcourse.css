@@ -2,12 +2,6 @@ input , .btn , select{
     margin: 5px !important;
 }
 #verymain{
-    position: absolute;
-    top: 50%;
-    width: 50%;
-
-    left: 50%;
-    transform: translate(-50%,-50%);
 }
 #main{
     background-color: #f8f9fa;

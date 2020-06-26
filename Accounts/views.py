@@ -5,6 +5,7 @@ from django.contrib.auth import logout as lgt
 from django.contrib.auth.decorators import login_required
 from Home.models import Course
 from Accounts.models import x
+from django.db.models import Q
 from Accounts.models import Profile as ProfileModel
 
 
@@ -74,13 +75,13 @@ def Logout(request):
 
 @login_required
 def Profile(request):
-    profile = request.user.profile
+    profile = request.user.ProfileModel
     return render(request, 'Accounts/profile.html', {'profile': profile.avatar})
 
 
 @login_required
 def EditProfile(request):
-    profile = request.user.profile
+    profile = request.user.ProfileModel
     if request.method == "GET":
         return render(request, 'Accounts/editprofile.html', {'profile': profile})
     else:
@@ -124,14 +125,17 @@ def createcourse(request):
         course.save()
         return redirect('/accounts/panel')
 
-def add(request,pk):
-    added = x(user=request.user,course=Course.objects.filter(pk=pk))
+
+def add(request, pk):
+    added = x(user=request.user, course=Course.objects.get(pk=pk))
     added.save()
     return redirect('/accounts/panel/courses')
+
+
 def courses(request):
-    coursess = Course.objects.all()
     mycourses = x.objects.filter(user=request.user)
-    args = {'courses': coursess,'mycourses':mycourses}
+    coursess = x.objects.filter(~Q(user=request.user))
+    args = {'courses': coursess, 'mycourses': mycourses}
     if request.method == "POST":
         querysearch = request.POST['search_query']
         teacher = Course.objects.filter(teacher=querysearch)
@@ -147,6 +151,6 @@ def courses(request):
         if not request.POST.get('course') and not request.POST.get('department') and not request.POST.get('teacher'):
             filteredCourses += list(department)
         filteredCourses = set(filteredCourses)
-        args = {'courses': coursess, 'searchResults': filteredCourses,'mycourses':mycourses}
+        args = {'courses': coursess, 'searchResults': filteredCourses, 'mycourses': mycourses}
         return render(request, 'Accounts/Courses.html', args)
     return render(request, 'Accounts/Courses.html', args)

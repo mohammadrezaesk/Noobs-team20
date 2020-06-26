@@ -73,7 +73,7 @@
     </div>
 </div>
     <div class="verymain">
-    <h1>All Courses (:</h1>
+    <h1>My Courses (:</h1>
     <div class="main">
         <div id="my_courses" style="text-align: center;">
             <div class="row">
@@ -85,11 +85,11 @@
             </div>
             {% for course in mycourses %}
             <div class="{{course.course_number}}_{{course.group_number}} row">
-                <div class="col-2"><h4>{{course.name}}</h4></div>
-                <div class="col-2" >{{course.department}}</div>
-                <div class="col-2">{{course.first_day}} and {{course.second_day}}</div>
-                <div class="col-3">{{course.start_time}} To {{course.end_time}}</div>
-                <div class="col-2">{{course.teacher}}</div>
+                <div class="col-2"><h4>{{course.course.name}}</h4></div>
+                <div class="col-2" >{{course.course.department}}</div>
+                <div class="col-2">{{course.course.first_day}} and {{course.second_day}}</div>
+                <div class="col-3">{{course.course.start_time}} To {{course.end_time}}</div>
+                <div class="col-2">{{course.course.teacher}}</div>
             </div>
             {% endfor %}
         </div>
